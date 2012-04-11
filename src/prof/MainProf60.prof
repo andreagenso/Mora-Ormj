@@ -1,0 +1,100 @@
+	Mon Oct  6 19:39 2008 Time and Allocation Profiling Report  (Final)
+
+	   MainProf60 +RTS -p -RTS
+
+	total time  =        0.22 secs   (11 ticks @ 20 ms)
+	total alloc =  88,075,036 bytes  (excludes profiling overheads)
+
+COST CENTRE                    MODULE               %time %alloc
+
+verifyUnicode                  Scanner               45.5   56.7
+takeComments                   Scanner               27.3   15.4
+CAF                            ScannerShow           18.2   17.9
+fIniWithId                     Scanner                9.1    0.5
+isToken                        ScannerGeneric         0.0    3.8
+classify1                      Scanner                0.0    1.4
+
+
+                                                                                               individual    inherited
+COST CENTRE              MODULE                                               no.    entries  %time %alloc   %time %alloc
+
+MAIN                     MAIN                                                   1           0   0.0    0.0   100.0  100.0
+ CAF                     Main                                                 182           2   0.0    0.0    81.8   82.1
+  main                   Main                                                 188           1   0.0    0.0    81.8   82.1
+   scanner               Scanner                                              189           1   0.0    0.0    81.8   82.1
+    loadLexicalStructure Scanner                                              190           1   0.0    0.7    81.8   82.1
+     classify            Scanner                                              192         855   0.0    0.0    81.8   81.4
+      verifyUnicode      Scanner                                              195     2080430  45.5   56.7    45.5   56.7
+      classify1          Scanner                                              194        2117   0.0    1.4     9.1    9.3
+       tokClassify       Scanner                                              196        1318   0.0    0.2     9.1    7.9
+        takeStringLiteral Scanner                                              250         168   0.0    0.0     0.0    0.1
+         takeEndQuote    Scanner                                              252        1008   0.0    0.1     0.0    0.1
+         isEndQuote      Scanner                                              251        1008   0.0    0.0     0.0    0.0
+        fIniWithZero     Scanner                                              226         341   0.0    0.2     0.0    0.9
+         takeDecimalInteger Scanner                                              244         504   0.0    0.1     0.0    0.1
+          takeLong       Scanner                                              245         504   0.0    0.0     0.0    0.0
+         takeToken       ScannerGeneric                                       239        3633   0.0    0.0     0.0    0.3
+          isToken        ScannerGeneric                                       240        3633   0.0    0.3     0.0    0.3
+         isSpecialSimbol Scanner                                              237         173   0.0    0.1     0.0    0.2
+          isToken        ScannerGeneric                                       238        1211   0.0    0.1     0.0    0.1
+         isIntegerLiteral Scanner                                              236         341   0.0    0.0     0.0    0.0
+         isDecimalFloatingLiteral4 Scanner                                              235         341   0.0    0.0     0.0    0.0
+          idflSuffix     Scanner                                              243         168   0.0    0.0     0.0    0.0
+         isDecimalFloatingLiteral3 Scanner                                              234         341   0.0    0.0     0.0    0.0
+          idflExponent   Scanner                                              242         168   0.0    0.0     0.0    0.0
+         isDecimalFloatingLiteral2 Scanner                                              233         341   0.0    0.0     0.0    0.0
+         isDecimalFloatingLiteral1 Scanner                                              232         341   0.0    0.0     0.0    0.0
+          idflPoint      Scanner                                              241         168   0.0    0.0     0.0    0.0
+         isHexIntegerLiteral Scanner                                              231         341   0.0    0.0     0.0    0.0
+         isHexaFloatingPointLiteral2 Scanner                                              230         341   0.0    0.0     0.0    0.0
+         isHexaFloatingPointLiteral1 Scanner                                              229         341   0.0    0.0     0.0    0.0
+         isHexaFloatingPointLiteral3 Scanner                                              228         341   0.0    0.0     0.0    0.0
+         isOctalIntegerLiteral Scanner                                              227         341   0.0    0.0     0.0    0.0
+        fIniWithId       Scanner                                              216         409   9.1    0.5     9.1    1.8
+         isIdentifier'   ScannerGeneric                                       225        7419   0.0    0.4     0.0    0.4
+         isIdentifier    Scanner                                              224         401   0.0    0.0     0.0    0.0
+         isNullLiteral   Scanner                                              222         401   0.0    0.0     0.0    0.1
+          isToken        ScannerGeneric                                       223         401   0.0    0.0     0.0    0.0
+         isBooleanLiteral Scanner                                              219        1203   0.0    0.0     0.0    0.1
+          isBooleanLiteral' Scanner                                              221         802   0.0    0.1     0.0    0.1
+         isKeyWord       Scanner                                              217         409   0.0    0.7     0.0    0.7
+        takeToken        ScannerGeneric                                       214       10895   0.0    0.0     0.0    1.1
+         isToken         ScannerGeneric                                       215       10895   0.0    1.1     0.0    1.1
+        isSpecialSimbol  Scanner                                              211         455   0.0    0.2     0.0    0.5
+         isToken         ScannerGeneric                                       213        3492   0.0    0.3     0.0    0.3
+        isOperator       Scanner                                              208         456   0.0    0.8     0.0    2.3
+         isToken         ScannerGeneric                                       210       15499   0.0    1.5     0.0    1.5
+        isMajor          Scanner                                              205         512   0.0    0.1     0.0    0.2
+         isToken         ScannerGeneric                                       207        1480   0.0    0.1     0.0    0.1
+        isStringLiteral  Scanner                                              204         568   0.0    0.0     0.0    0.1
+         takeEndQuote    Scanner                                              248         336   0.0    0.0     0.0    0.0
+         checkString     Scanner                                              247         336   0.0    0.0     0.0    0.0
+          isInputCharacter' Scanner                                              249         280   0.0    0.0     0.0    0.0
+         isEndQuote      Scanner                                              246         336   0.0    0.0     0.0    0.0
+        isCharacterLiteral Scanner                                              203         568   0.0    0.0     0.0    0.0
+        isDigitPoint     Scanner                                              202         909   0.0    0.0     0.0    0.0
+        isId             Scanner                                              201        1318   0.0    0.1     0.0    0.1
+        isLineComment    Scanner                                              199        1318   0.0    0.1     0.0    0.3
+         isToken         ScannerGeneric                                       200        1318   0.0    0.1     0.0    0.1
+        isBlockComment   Scanner                                              197        1318   0.0    0.1     0.0    0.3
+         isToken         ScannerGeneric                                       198        1318   0.0    0.1     0.0    0.1
+      takeComments       Scanner                                              193      564840  27.3   15.4    27.3   15.4
+ CAF                     GHC.Show                                             177           1   0.0    0.0     0.0    0.0
+ CAF                     GHC.Int                                              148           1   0.0    0.0     0.0    0.0
+ CAF                     GHC.Handle                                           134           7   0.0    0.0     0.0    0.0
+  main                   Main                                                 253           0   0.0    0.0     0.0    0.0
+   scanner               Scanner                                              254           0   0.0    0.0     0.0    0.0
+    loadLexicalStructure Scanner                                              255           0   0.0    0.0     0.0    0.0
+ CAF                     GHC.Conc                                             133           1   0.0    0.0     0.0    0.0
+ CAF                     System.Posix.Internals                               118           7   0.0    0.0     0.0    0.0
+ CAF                     Scanner                                              109           8   0.0    0.0     0.0    0.0
+ CAF                     UU.Scanner.Position                                  108           2   0.0    0.0     0.0    0.0
+ CAF                     ScannerShow                                          101           4  18.2   17.9    18.2   17.9
+  $f2                    ScannerShow                                          191           1   0.0    0.0     0.0    0.0
+ CAF                     ScannerLexical                                        98           5   0.0    0.0     0.0    0.0
+  constantBool           ScannerLexical                                       220           1   0.0    0.0     0.0    0.0
+  keyWord                ScannerLexical                                       218           1   0.0    0.0     0.0    0.0
+  specialSimbol          ScannerLexical                                       212           1   0.0    0.0     0.0    0.0
+  operatorList           ScannerLexical                                       209           1   0.0    0.0     0.0    0.0
+  majorList              ScannerLexical                                       206           1   0.0    0.0     0.0    0.0
+ CAF                     ScannerGeneric                                        97           1   0.0    0.0     0.0    0.0

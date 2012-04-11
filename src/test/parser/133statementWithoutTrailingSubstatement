@@ -1,0 +1,252 @@
+/* PRUEBAS DE STATEMENT */
+
+// ENTRANDO POR METHODDECLARATION -> STATEMENT
+
+// StatementWithoutTrailingSubstatement
+	// Block
+	/* 
+class ReprChange implements AAA,adadad,asdad {	
+	public <AAA,BBB> void  Metodo(){
+		{	34 + 80;
+		}
+		{;
+		a=4;
+		}
+		34;
+		return a;
+	}
+}
+ 
+// EmptyStatement
+ 
+class ReprChange implements AAA,adadad,asdad {	
+	// methodDeclaration -> methodModifiers TypeParameters opt
+	public <AAA,BBB> void  Metodo(){
+		;
+	}
+}
+
+
+// ExpressionStatement
+class ReprChange implements AAA,adadad,asdad {	
+	// methodDeclaration -> methodModifiers TypeParameters opt
+	public <AAA,BBB> void  Metodo(){
+		34+87 > 45 ;
+		a=56;
+		b=a++;
+	}
+}
+
+// AssertStatement
+class ReprChange implements AAA,adadad,asdad {	
+	// methodDeclaration -> methodModifiers TypeParameters opt
+	public <AAA,BBB> void  Metodo(){
+		assert 45;
+		assert 23 : a;		
+		assert a=23 : a&&b;		
+	}
+}
+
+
+// SwitchStatement
+class ReprChange implements AAA,adadad,asdad {	
+	// methodDeclaration -> methodModifiers TypeParameters opt
+	public <AAA,BBB> void  Metodo(){
+		switch( a) {
+		case 1:
+			a++;
+		case 2:
+			a--;
+		case a:
+			a=0;
+		default:
+			a=0;
+		}
+	}
+}
+
+class ReprChange implements AAA,adadad,asdad {	
+	// methodDeclaration -> methodModifiers TypeParameters opt
+	public <AAA,BBB> void  Metodo(){
+		enum EstadoCivil {soltero, casado, divorciado};
+		EstadoCivil ec = EstadoCivil.casado;
+		ec = EstadoCivil.soltero;
+		switch(ec)
+		{
+			case soltero:	System.out.println("Es soltero");
+					break;
+			case casado:	System.out.println("Es casado");
+					break;
+			case divorciado:System.out.println("Es divorciado");
+					break;
+			case aa:
+			case bb:
+			default:
+				break;
+		 }
+	}
+}
+
+// DoStatement
+class ReprChange implements AAA,adadad,asdad {	
+	public <AAA,BBB> void  Metodo(){
+		do 
+			if (a > b) 
+			a=b;
+			else
+			a =10;
+		while(a > 100);
+	}
+}
+
+// BreakStatement
+class ReprChange implements AAA,adadad,asdad {	
+	public <AAA,BBB> void  Metodo(){
+		do 
+			if (a > b) 
+			a=b;
+			else
+			a =10;
+		while(a > 100);
+		
+				Vector<String> v = new Vector<String>();
+		for(String cadena: v)
+		System.out.println (cadena);
+		
+		
+		for(int i=0;100;i++){
+			System.out.println(i);
+			break salto;
+		}
+		
+		int[] arrayInt = {1, 20, 30, 2, 3, 5};
+		for(int elemento: arrayInt)
+		{System.out.println (elemento);	
+		break;
+		}
+		
+	}
+}
+
+
+// ContinueStatement
+class ReprChange implements AAA,adadad,asdad {	
+	public <AAA,BBB> void  Metodo(){
+		do 
+			if (a > b) 
+			a=b;
+			else
+			a =10;
+		while(a > 100);
+		
+				Vector<String> v = new Vector<String>();
+		for(String cadena: v)
+		System.out.println (cadena);
+		
+		
+		for(int i=0;100;i++){
+			System.out.println(i);
+			continue salto;
+		}
+		
+		int[] arrayInt = {1, 20, 30, 2, 3, 5};
+		for(int elemento: arrayInt)
+		{System.out.println (elemento);	
+		continue;
+		}
+		
+	}
+}
+
+// ReturnStatement
+class ReprChange implements AAA,adadad,asdad {	
+	public <AAA,BBB> void  Metodo(){
+		Vector<String> v = new Vector<String>();
+		for(String cadena: v)
+		System.out.println (cadena);
+		
+		
+		int[] arrayInt = {1, 20, 30, 2, 3, 5};
+		for(int elemento: arrayInt)
+		{System.out.println (elemento);	
+		continue;
+		}
+		return a+45;
+		return boolean.class;
+		return;
+		
+	}
+}
+
+
+// SynchronizedStatement
+class ReprChange implements AAA,adadad,asdad {	
+	public <AAA,BBB> void  Metodo(){
+		synchronized (a>5 && boolean.class) { a=45;} 
+		synchronized (a>5 && boolean.class) { a=45;
+			Vector<String> v = new Vector<String>();
+			for(String cadena: v)
+			System.out.println (cadena);	
+		} 
+		
+	}
+}
+
+// ThrowStatement
+class ReprChange implements AAA,adadad,asdad {	
+	public <AAA,BBB> void  Metodo(){
+		synchronized (a>5 && boolean.class) { a=45;} 
+		synchronized (a>5 && boolean.class) { a=45;
+			Vector<String> v = new Vector<String>();
+			for(String cadena: v)
+			System.out.println (cadena);
+			throw 23+6;
+			throw a;
+			throw byte.class;
+		} 		
+	}
+}
+
+// TryStatement
+class ReprChange implements AAA,adadad,asdad {	
+	public <AAA,BBB> void  Metodo(){
+			
+			int valor;
+			try {
+			     for( x=0,valor = 100; x < 100; x ++ )
+			        valor /= x;
+			    }
+			catch( ArithmeticException e) {
+				System.out.println("Matematicas locas");
+			}
+			catch( Exception e ) {
+			System.out.println("Se ha producido un error" );
+			}
+	}
+}
+*/
+
+class ReprChange implements AAA,adadad,asdad {	
+	public <AAA,BBB> void  Metodo(){
+			
+			int valor;
+			 try {
+		        if( temp > 40 )
+		            throw( new demasiadoCalor() );
+		        if( dormir < 8 )
+		        	a = 8;
+		            // throw( new demasiado Cansado() );
+		    	} catch( Limites lim ) {
+		        if( lim instanceof demasiadoCalor ) {
+		            System.out.println( "Capturada excesivo calor!" );
+		            return;
+		            }
+		        if( lim instanceof demasiadoCansado ) {
+		            System.out.println( "Capturada excesivo cansancio!" );
+		            return;
+		            }
+				} finally
+				// System.out.println( "En la clausula finally" );
+		        {System.out.println( "En la clausula finally" );}			
+	}
+}

@@ -1,0 +1,6 @@
+
+How to use the software - UU.Pasing
+
+    in Hugs: use the "-98" option
+    in Ghc: use the follwing options
+        -fglasgow-exts -fallow-undecidable-instances -fallow-overlapping-instances -fwarn-missing-signatures 

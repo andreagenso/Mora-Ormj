@@ -1,0 +1,9 @@
+name:           PruebaOrmj
+version:        0.1
+cabal-version:  >= 1.2
+
+executable Ormj
+  hs-source-dirs:  src
+  main-is:         Main.hs
+  build-depends:   base, uu-parsinglib
+  ghc-options:     -fglasgow-exts -XUndecidableInstances -XOverlappingInstances -fwarn-missing-signatures

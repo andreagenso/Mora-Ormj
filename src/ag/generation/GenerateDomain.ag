@@ -1,0 +1,48 @@
+{ -- Definicion de la estructura de datos }
+DATA  Root
+       | Root src:String domain:Domain
+
+TYPE Domain = [String]
+
+DERIVING * : Show
+
+{-  Atributo -}	   
+ATTR Domain [ | dom:{String} |]
+
+SEM Root 
+  | Root domain.dom = { @src ++ "/" }   
+
+{- Funciones semanticas -}
+-- convertir el dominio a algo entendible para el createDirectory
+SEM Domain
+ | Cons loc.dom = @lhs.dom ++ @hd ++ "/"
+         tl.dom   = @dom
+        lhs.dom  = @tl.dom
+
+ | Nil   lhs.dom = @lhs.dom     
+
+{- recoger la creacion de directorios -}  
+
+ATTR Domain [||dirCreados:{IO()}]
+
+SEM Domain 
+  | Cons lhs.dirCreados = {createDirectory @dom >> @tl.dirCreados }
+  | Nil  lhs.dirCreados = { return() }
+
+{- Elaborar aqui el sem_Root_Root para mostrar y crear directorio -}
+
+SEM Root [ || out:{ IO() } ]
+  | Root lhs.out = {do putStrLn ("Creando dominio del proyecto....")
+                       @domain.dirCreados 
+                       putStrLn (" Domino creado ...")
+                   }
+
+-- Obtener la ruta del proyecto y dominio para la creacion de la arquitectura interna
+
+ATTR Root [ || ruta:{String}]
+SEM Root 
+  | Root lhs.ruta = { if ((last @domain.dom) == '/')then (init @domain.dom) else @domain.dom}
+
+imports{
+import Directory
+}

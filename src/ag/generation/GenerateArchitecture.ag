@@ -1,0 +1,88 @@
+{- En este caso el root es el nombre del proyecto 
+-- Proyecto tiene una arquitectura
+-- Arquitectura tiene una lista de directorios
+-- Directorios tienen una lista de nombres de directorios
+-}
+
+DATA Project | Project nameProject:Dirs arch:Architecture
+TYPE Architecture = [Dirs]
+TYPE Dirs     = [String]
+DERIVING * : Show
+
+{- Crear el proyecto -}
+-- Revisar este atributo, creo que ya no es necesario
+ATTR Architecture [|| proyecto:{IO()}]
+SEM Architecture  
+  | Cons   lhs.proyecto  = { do 
+                       putStrLn ("Creando el proyecto...")
+                       d <- (doesDirectoryExist @lhs.dir)
+                       (if d then (print "modificando el proyecto..." ) else (print "modificando el proyecto...")) -- createDirectory @lhs.dir
+                       putStrLn ("Proyecto modificado ... ")
+                       }  
+  | Nil lhs.proyecto = { do 
+                    putStrLn ("No hay proyecto")}                
+
+
+{- preparar la estructura para la creacion de directorios -}
+-- cuando recibimos src/abc  lo preparamos de la forma: "src"  "src/abc"
+
+ATTR Dirs Architecture [ | dir:{String} |]
+
+SEM Project
+    | Project   nameProject.dir = { "" }
+                arch.dir        = { @nameProject.dir } 
+    
+SEM Dirs
+ | Cons  loc.dir  =  @lhs.dir ++ @hd ++ "/"
+         tl.dir   = @dir
+         lhs.dir  = @tl.dir	
+--  | Nil  lhs.dir = ""      
+
+SEM Architecture  
+  | Cons loc.dirarch   = { @lhs.dir }
+         tl.dir        = { @dirarch }
+         lhs.dir       = { @dirarch }
+
+{- Recoger la creacion de los direcotorios -}
+ATTR Dirs Architecture [||dirCreados:{IO ()}]
+
+SEM Dirs
+  | Cons lhs.dirCreados  = { (do
+                             print "Creando directorio :" 
+                             d <- (doesDirectoryExist @dir)
+                             if d then (print "Modificando el Dir..." ) else (createDirectory @dir)
+                             )
+                             >> @tl.dirCreados
+                             } 
+                             
+  | Nil  lhs.dirCreados  = { return() }
+
+SEM Architecture
+  | Cons lhs.dirCreados  = { @tl.dirCreados } 
+  | Nil lhs.dirCreados  = {  return() } 
+  
+
+ATTR Architecture Project Dirs [|| out:{ IO()}]
+SEM Dirs
+  | Cons   lhs.out = { @tl.dirCreados >> @tl.out
+                           }  
+  | Nil lhs.out = { do 
+                    putStrLn ("Fin de la creacion del dirs")
+                  }                
+
+SEM Architecture  
+  | Cons   lhs.out = { do 
+                       putStrLn ("Creando la arquitectura...")
+                       @hd.dirCreados >> @tl.out
+                           }  
+  | Nil lhs.out = { do 
+                    putStrLn ("Fin de la creacion de directorios")
+                  }                
+
+SEM Project 
+    | Project lhs.out = { (@nameProject.dirCreados) >> (@arch.proyecto >> @arch.out) >> (print "se ha creado la arquitectura externa del proyeto :") >> (print @nameProject.dir) }
+
+
+imports{
+import Directory
+}
