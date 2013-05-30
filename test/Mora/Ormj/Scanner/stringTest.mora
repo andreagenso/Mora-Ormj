@@ -1,0 +1,10 @@
+""
+"  ascvv "
+" \u0000asdasdasdascdffervv "
+" \u000cddfecdcsdcd "
+" \"   "
+"'"
+"""
+"\'"
+"\b"
+v = '\\u2297';
