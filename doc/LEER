@@ -4,3 +4,18 @@ How to use the software - UU.Pasing
     in Hugs: use the "-98" option
     in Ghc: use the follwing options
         -fglasgow-exts -fallow-undecidable-instances -fallow-overlapping-instances -fwarn-missing-signatures 
+
+USAR:
+        
+        -fglasgow-exts -XUndecidableInstances -XOverlappingInstances -fwarn-missing-signatures
+
+
+
+ configuraciones en cabal
+ ghc-options: -fglasgow-exts
+
+build-depends:    haskell2010,
+
+executable Mora-Ormj
+  hs-source-dirs:  src
+  main-is:         Main.hs

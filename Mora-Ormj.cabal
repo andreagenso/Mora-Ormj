@@ -1,0 +1,17 @@
+name:           Mora-Ormj
+version:        0.1
+cabal-version:  >= 1.2
+build-type:     Simple
+author:         andrea moruno
+
+library
+  build-depends:   
+                   base >= 4,
+                   directory,
+                   uu-parsinglib,
+                   uulib,
+                   Cabal
+  exposed-modules: Mora.Ormj.Scanner Mora.Ormj.Parser Mora.Ormj.Integration Mora.Ormj.Ast.Semantic
+  ghc-options: -fwarn-missing-signatures
+  extensions: UndecidableInstances OverlappingInstances
+  hs-source-dirs: src
