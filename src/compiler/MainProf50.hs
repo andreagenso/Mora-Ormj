@@ -1,4 +1,0 @@
-
-import Scanner
-
-main = scanner "pruebas/pruebaScanner/2packageDeclarationNormalAnnotation2_50"
