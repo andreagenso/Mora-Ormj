@@ -1,4 +1,4 @@
 
 import Scanner
 
-main = scanner "pruebas/pruebaScanner/2packageDeclarationNormalAnnotation2_50"
+main = scanner "pruebas/pruebaScanner/2packageDeclarationNormalAnnotation2_50.mora"

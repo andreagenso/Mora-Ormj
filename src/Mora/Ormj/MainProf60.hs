@@ -1,4 +1,4 @@
 module Main where 
 import Scanner
 
-main = scanner "pruebas/pruebaScanner/2packageDeclarationNormalAnnotation2_60"
+main = scanner "pruebas/pruebaScanner/2packageDeclarationNormalAnnotation2_60.mora"
