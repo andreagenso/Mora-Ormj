@@ -14,8 +14,15 @@ USAR:
  configuraciones en cabal
  ghc-options: -fglasgow-exts
 
+ -fwarn-missing-signatures  muestra los warnings, por ejemplo: Warning: Top-level binding with no type signature
+ -fnowarn-missing-signatures No muestra los warnings
+
 build-depends:    haskell2010,
 
 executable Mora-Ormj
   hs-source-dirs:  src
   main-is:         Main.hs
+
+  -----------------------------------------------------------------
+
+  testScanner: "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/java/openjdk-6-src-b27/jdk/src/share/classes/com/sun/demo/jvmti/hprof/Tracker.java"

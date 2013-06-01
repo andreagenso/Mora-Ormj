@@ -25,6 +25,9 @@ library
                    filepath,
                    Cabal
   exposed-modules: Mora.Ormj.Scanner Mora.Ormj.Parser Mora.Ormj.Integration Mora.Ormj.Ast.Semantic
-  ghc-options: -fwarn-missing-signatures
+    Mora.Ormj.Scanner.Token Mora.Ormj.Scanner.Show Mora.Ormj.Scanner.Lexical Mora.Ormj.Scanner.Generic
+    Mora.Ormj.Scanner.Position
+
+  ghc-options:  -fno-warn-missing-signatures
   extensions: UndecidableInstances OverlappingInstances
   hs-source-dirs: src test

@@ -1,4 +1,4 @@
-module Mora.Ormj.Scanner(scanner, classify) where
+module Mora.Ormj.Scanner(scanner, classify, scannerStr) where
 
 import Data.Char
 import Data.List
@@ -8,9 +8,6 @@ import Mora.Ormj.Scanner.Lexical
 import Mora.Ormj.Scanner.Generic
 import UU.Scanner.Position
 import Mora.Ormj.Scanner.Position
--- import Text.ParserCombinators.UU.Scanner.Position
--- import Text.ParserCombinators.UU.Core
--- import Text.ParserCombinators.UU.BasicInstances
 
 {- Scanner Mora Project, OrmJ Language  -}
 -- Init the scan 
@@ -22,6 +19,9 @@ loadLexicalStructure file = do
                             reading <- readFile file
                             let tokens = classify reading (initPos file)
                             putStr(show tokens)
+
+scannerStr :: String -> String
+scannerStr file = show (classify file (initPos file))
                             
 {- Init the classify of tokens
 f == '\n'   -> review and update the  Row
