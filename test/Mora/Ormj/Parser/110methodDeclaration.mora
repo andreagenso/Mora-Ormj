@@ -4,7 +4,7 @@
 
 // ClassMemberDeclaration -> MethodDeclaration
 	// MethodHeader
-/*
+
 class ReprChange implements AAA,adadad,asdad  {
 	int a,b,c; // fieldModifier vacio
 	public static int a;
@@ -48,7 +48,7 @@ class ReprChange implements AAA,adadad,asdad  {
 	protected transient String<?,AA> c[];
 	volatile String<? extends GG>[] d[][], g;
 	@Declaracion ( a =6) String<RRR>[] g, mm[] = {34,56} ;
-	
+
 	// methodDeclaration -> methodModifiers TypeParameters opt
 	public <AAA,BBB> void  Metodo(); 
 	private <AAA,BBB extends CCC & DDD> void Metodo(){}
@@ -90,7 +90,7 @@ class ReprChange implements AAA,adadad,asdad {
 	@TypoMetodo(s=23) <AAA,BBB extends CCC<dd[]> & DDD.AA & GGGG> void Metodo();
 } 
 
-class ReprChange extends Change<eeere.erer, hhhh[], ccccc<?>> implements AALL.adasd<dfdf[]> {
+class ReprChange extends Change<eeere.erer, hhhh[], ccccc<?> > implements AALL.adasd<dfdf[]> {
 public int A;
 private boolean j = true;
 private String i,m,n;
@@ -102,10 +102,9 @@ private String i,m,n;
 	@TypoMetodo(s=23) <AAA,BBB extends CCC<dd[]> & DDD.AA & GGGG> void Metodo();
 }
 
-
 // ConstructorDeclaration
 	// Revisar el FormalParameterList
-class ReprChange extends Change<eeere.erer, hhhh[], ccccc<?>> implements AALL.adasd<dfdf[]> {
+class ReprChange extends Change<eeere.erer, hhhh[], ccccc<?> > implements AALL.adasd<dfdf[]> {
 	private ReprChange(final int a ){ a = 8;} 
 	private ReprChange(){ a = 8;} 
 
@@ -118,7 +117,7 @@ class ReprChange extends Change<eeere.erer, hhhh[], ccccc<?>> implements AALL.ad
 }
 
 class ReprChange<T extends ConvertibleTo<S, ?> & RRRRRR.DDDDD.LLLL<?,?, CCCC[][][][]> & SSSSS & KKKK,
-S extends ConvertibleTo<T>, M, N> extends Change.dfghfg.fgfg<eeere.erer, hhhh[], ccccc<?>> implements LLLL<? extends KKK>
+S extends ConvertibleTo<T>, M, N> extends Change.dfghfg.fgfg<eeere.erer, hhhh[], ccccc<?> > implements LLLL<? extends KKK>
 {
 // AQUI OPTIMIZAR CLASSMEMBER DECLARATION 
 T t;
@@ -136,7 +135,7 @@ public abstract <AAA,BBB extends CCC<dd[]> & DDD.AA & GGGG> void Metodo();
 }
 
 // MethodDeclaration -> MethodHeader ->  MethodModifiers opt TypeParameters opt ResulType
-class ReprChange extends Change<eeere.erer, hhhh[], ccccc<?>> implements AALL.adasd<dfdf[]> {
+class ReprChange extends Change<eeere.erer, hhhh[], ccccc<?> > implements AALL.adasd<dfdf[]> {
 	private ReprChange(final int a ){ a = 8;} 
 	private ReprChange(){ a = 8;} 
 
@@ -149,8 +148,9 @@ class ReprChange extends Change<eeere.erer, hhhh[], ccccc<?>> implements AALL.ad
 }
 
 
+
 // MethodDeclaration -> MethodHeader ->  MethodModifiers opt TypeParameters opt ResulType MethodDeclarator
-class ReprChange extends Change<eeere.erer, hhhh[], ccccc<?>> implements AALL.adasd<dfdf[]> {
+class ReprChange extends Change<eeere.erer, hhhh[], ccccc<?> > implements AALL.adasd<dfdf[]> {
 // public int A;
 // private boolean j = true;
 // private String i,m,n;
@@ -162,17 +162,17 @@ class ReprChange extends Change<eeere.erer, hhhh[], ccccc<?>> implements AALL.ad
 
 
 // MethodDeclaration -> MethodHeader ->  MethodModifiers opt TypeParameters opt ResulType MethodDeclarator Throws opt
-class ReprChange extends Change<eeere.erer, hhhh[], ccccc<?>> implements AALL.adasd<dfdf[]> {
+class ReprChange extends Change<eeere.erer, hhhh[], ccccc<?> > implements AALL.adasd<dfdf[]> {
 	// methodDeclaration -> methodModifiers TypeParameters opt Throws opt
 	public <AAA,BBB> void  Metodo(final int a, int b, int ...A) throws MiExcepcion; 
 	public <AAA,BBB> void  Metodo(final int a, int b, int ...A) throws MiExcepcion, AAA.BB<?,A> {} 
 	@TypoMetodo(s=23) <AAA,BBB extends CCC<dd[]> & DDD.AA & GGGG> void Metodo(final String a, @MiAnotacion(b=8) int d) throws MiExcepcion {}
 }
-*/
+
 
 // ClassMemberDeclaration -> MethodDeclaration
 	// MethodHeader MethodBody
-class ReprChange extends Change<eeere.erer, hhhh[], ccccc<?>> implements AALL.adasd<dfdf[]> {
+class ReprChange extends Change<eeere.erer, hhhh[], ccccc<?> > implements AALL.adasd<dfdf[]> {
 	// methodDeclaration -> methodModifiers TypeParameters opt Throws opt
 	public <AAA,BBB> void  Metodo(final int a, int b, int ...A) throws MiExcepcion
 	{ a + 8;

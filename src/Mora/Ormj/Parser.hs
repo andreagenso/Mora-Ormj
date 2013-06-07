@@ -22,9 +22,8 @@ pAnnotations = pFoldr(sem_Annotations_Cons, sem_Annotations_Nil) pAnnotation
 -- 4
 pAnnotation = sem_Annotation_Annotation <$ pSpecialSimbol "@"<*> pTypeName <*> pTypeAnnotation
 
--- AQUI REVISAR SI SE OPTIMIZA OJO OJO OJO
 pTypeAnnotation = pSucceed sem_TypeAnnotation_MarkerAnnotation
-                           <|> r <**> ( (\ss evp -> stan evp )  <$$> evps <|> (\ss ev -> stas ev) <$$> ev  )
+                          <|> r <**> ( (\ss evp -> stan evp)  <$$> evps <|> (\ss ev -> stas ev) <$$> ev  )
 
 r = pSpecialSimbol "("
 stan = sem_TypeAnnotation_NormalAnnotation
@@ -651,7 +650,7 @@ pCatchClause = sem_CatchClause_CatchClause <$ pKeyWord "catch" <* pSpecialSimbol
 -- FIN Parser of TypeDeclarations
 -- ---------------------------------------------------------------------------------------------
 parser nombre = do 
-                                   entrada   <- readFile nombre
-                                   let sel   = classify entrada (initPos nombre)
-                                   resultado <- parseIO pOrmj sel
-                                   putStrLn( show resultado)    
+                   entrada   <- readFile nombre
+                   let sel   = classify entrada (initPos nombre)
+                   resultado <- parseIO pOrmj sel
+                   putStrLn( show resultado)

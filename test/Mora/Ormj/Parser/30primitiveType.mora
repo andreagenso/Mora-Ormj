@@ -11,5 +11,6 @@
 @Anotacion( dfdf= char.class  )
 @Anotacion( dfdf= float.class  )
 @Anotacion( dfdf= double.class  )
-@Anotacion( dfdf= AAA.SS.JJJJJ< ttt.yyy.uuu <eee.rtrt.rtrt, ?extends qqq.eeee.rtrt< eee.eeee.rrr>>>.class  )
+// EJEMPLO DE  < < <> > > y <<< >>>
+@Anotacion( dfdf= AAA.SS.JJJJJ< ttt.yyy.uuu <eee.rtrt.rtrt, ?extends qqq.eeee.rtrt< eee.eeee.rrr> > > .class  )
 package NombrePaquete;

@@ -1,0 +1,20 @@
+/* Pruebas de conditionalOrExpression prioridades
+*/
+
+@Anotacion( true && false || ~true )
+@Anotacion( dfdf= (++23 instanceof aasas) << 23+234234-3435*344/+-22 >> 234234  ? false && !true : ~true )
+@Anotacion( dfdf= (++23 instanceof aasas) << 23+234234-3435*344/+-22 >> 234234  ? false && !true : ~true )
+@Anotacion( dfdf= (23++ instanceof aasas) << 23+-234234-~3435*344/22 >> 234234%3  ? --25 : asas.asas.asas )
+@Anotacion( dfdf= (23++ instanceof aasas) << 23+-234234-~3435*344/22 >> 234234%3  ? --25 : (asas.asas.asas + (boolean)34)  )
+
+-- restringit el caso: (boolean)
+@Anotacion( dfdf= (23++ instanceof aasas) << 23+-234234-~3435*344/22 >> 234234%3  ? --25 : (asas.asas.asas + (boolean)34)  )
+
+package NombrePaquete;
+
+-- 06/06/2013 - manejar condiciones de contexto para evitar que cuando hay varias anotaciones ej 10ConditionalExpression. se ponga lento
+pTypeAnnotation
+
+-- 06/06/2013 - aplicar condicion de contexto para caso: 30primitiveType - solo admitir 1 de < > y no < < > >
+ // EJEMPLO DE  < < <> > > y <<< >>>
+ @Anotacion( dfdf= AAA.SS.JJJJJ< ttt.yyy.uuu <eee.rtrt.rtrt, ?extends qqq.eeee.rtrt< eee.eeee.rrr> > > .class  )

@@ -20,8 +20,12 @@ loadLexicalStructure file = do
                             let tokens = classify reading (initPos file)
                             putStr(show tokens)
 
-scannerStr :: String -> String
-scannerStr file = show (classify file (initPos file))
+-- scannerStr :: String -> String
+-- scannerStr file = show (classify file (initPos file))
+
+scannerStr :: String -> Tokens
+scannerStr file = classify file (initPos file)
+
                             
 {- Init the classify of tokens
 f == '\n'   -> review and update the  Row
@@ -56,9 +60,9 @@ tokClassify (scod,code) pos  | isBlockComment   scod                = (Token Blo
                                                  | isId scod                            = fIniWithId (scod,code) pos
                                                  | isDigitPoint scod                    = fIniWithZero (scod,code) pos
                                                          | isCharacterLiteral scod              = (Token CharacterLiteral (takeCharacterLit scod) pos)                       : (classify1 ((scod \\ (takeCharacterLit scod            )) ++ code) (advc (length (takeCharacterLit scod           )) pos ))                                      
-                                                         | isStringLiteral scod code            = (Token StringLiteral    (fst(takeStringLiteral scod code))   pos )         : (classify  ( snd(takeStringLiteral scod code)                    ) (advc (length (fst(takeStringLiteral scod code  ))) pos ))         
-                                                         | isMajor       scod majorList         = (Token TokMayor (takeToken scod majorList) pos)                            : (classify1 ((scod \\ (takeToken scod majorList)) ++ code) (advc (length (takeToken scod majorList)) pos ))                                                                                                                                                
-                                                         | isOperator       scod operatorList   = (Token Operator (takeToken scod operatorList) pos)                         : (classify1 ((scod \\ (takeToken scod operatorList)) ++ code) (advc (length (takeToken scod operatorList)) pos ))                                                                                          
+                                                         | isStringLiteral scod code            = (Token StringLiteral    (fst(takeStringLiteral scod code))   pos )         : (classify  ( snd(takeStringLiteral scod code)                    ) (advc (length (fst(takeStringLiteral scod code  ))) pos ))
+                                                         | isOperator       scod operatorList   = (Token Operator (takeToken scod operatorList) pos)                         : (classify1 ((scod \\ (takeToken scod operatorList)) ++ code) (advc (length (takeToken scod operatorList)) pos ))
+                                                         | isMajor       scod majorList         = (Token TokMayor (takeToken scod majorList) pos)                            : (classify1 ((scod \\ (takeToken scod majorList)) ++ code) (advc (length (takeToken scod majorList)) pos ))
                                                          | isSpecialSimbol  scod specialSimbol  = (Token SpecialSimbol  (takeToken scod specialSimbol) pos)                                 : (classify1 ((scod \\ (takeToken scod specialSimbol )) ++ code) (advc (length (takeToken scod specialSimbol)) pos ))
                                                  | otherwise                            = (Token Error scod pos)                                                                    : (classify1 code (advc (length scod) pos))
 

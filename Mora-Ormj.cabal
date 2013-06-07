@@ -24,9 +24,9 @@ library
                    uulib,
                    filepath,
                    Cabal
-  exposed-modules: Mora.Ormj.Scanner Mora.Ormj.Parser Mora.Ormj.Integration Mora.Ormj.Ast.Semantic
+  exposed-modules: Mora.Ormj.Scanner Mora.Ormj.Parser Mora.Ormj.Integration
     Mora.Ormj.Scanner.Token Mora.Ormj.Scanner.Show Mora.Ormj.Scanner.Lexical Mora.Ormj.Scanner.Generic
-    Mora.Ormj.Scanner.Position
+    Mora.Ormj.Scanner.Position Mora.Ormj.Integration.ScannerParser Mora.Ormj.Ast.Sintax Mora.Ormj.Ast.Semantic
 
   ghc-options:  -fno-warn-missing-signatures
   extensions: UndecidableInstances OverlappingInstances

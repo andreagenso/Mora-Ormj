@@ -24,7 +24,7 @@
 
 // StringLiteral
 // @Anotacion( dfdf= "This is a string" + ""+ "\""+ "This is a "+  "two-line string" + '\u03a9'+ '\uFFFF'+ '\177' * 3.4028235e38f  << 0xDadaCafe > true   ? false : (boolean)34  )
-/* 
+/*
 ""
 "\""
 "This is a string" // a string containing 16 characters
@@ -35,5 +35,5 @@
 
 // NullLiteral
 // @Anotacion( dfdf= null)
-@Anotacion( dfdf= null + ""+ "\""+ "This is a "+  "two-line string" + '\u03a9'+ '\uFFFF'+ '\177' * 3.4028235e38f  << 0xDadaCafe > true   ? false : (boolean.class)34  )
+@Anotacion( dfdf= null + ""+ "\""+ "This is a "+  "two-line string" + '\u03a9'+ '\uFFFF'+ '\177' * 3.4028235e38f  << 0xDadaCafe > true   ? false : (boolean)34  )
 package NombrePaquete;
