@@ -161,10 +161,15 @@ pPrimaryNNA =  sem_PrimaryNNA_PrimNNALiteral_IntegerLiteral_DecimalIntegerLitera
                    <|> sem_PrimaryNNA_PrimNNAThis                                                             <$ pKeyWord "this"                   
                    <|> (\f -> f)                                                                          <$ pSpecialSimbol "(" <*> pParExprOrCastExpression               
                    <|> (\f -> f)                                                                          <$ pKeyWord "super" <* pSpecialSimbol "." <*> pPrimaryNNAiV
-                   <|>  sem_PrimaryNNA_PrimNNATypeClassPrimitiveType                                      <$> pPrimitiveType <*> pTypeZ  <* pSpecialSimbol "." <* pKeyWord "class" 
+                   <|>  sem_PrimaryNNA_PrimNNATypeClassPrimitiveType                                      <$> pPrimitiveType <*> pTypeZ  <* pPrimaryNNA_PrimNNATypeClassPrimitiveType_Class
                    <|> (\ids f -> f ids)                                                                  <$> pTypeName <*> pPrimaryNNAv
                    <|> (\i f -> f i)                                                                      <$> pIdentifier <*> pPrimaryNNA'
                    <|> (\f -> f)                                                                          <$ pKeyWord "new" *> pArrayCreationExpressionOrClassInstanceCreationExpression
+
+pPrimaryNNA_PrimNNATypeClassPrimitiveType_Class = pSucceed (\f -> f)
+    <|> (\f -> f) <$ pSpecialSimbol "." <* pKeyWord "class"
+
+
                   
 -- pIdentifiers     = pFoldr1Sep (sem_Identifiers_Cons, sem_Identifiers_Nil) (pSpecialSimbol ".") pIdentifier             
                    

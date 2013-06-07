@@ -91,6 +91,13 @@ test "tspPI" = tspPI
 test "tspPC" = tspPC
 test "tspPP" =  tspPP
 
+test "tspj1" = tspj1
+test "tspj2" = tspj2
+test "tspj3" = tspj3
+test "tspj4" = tspj4
+test "tspj5" = tspj5
+test "tspj" = tspj
+
 -- scanner
 test "tss0" = tss0
 test "tss1" = tss1
@@ -166,5 +173,8 @@ test "tssImport" = tssImport
 test "tssPI" = tssPI
 test "tssPC" = tssPC
 test "tssPP" =  tssPP
+
+test "tssj" = tssj
+
 
 test _ = print ("Command not found!!")

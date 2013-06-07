@@ -89,3 +89,11 @@ tspImport = parser "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Orm
 tspPI = parser "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/Parser/PackageImportTest.mora"
 tspPC = parser "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/Parser/PruebaConditionalExpression.mora"
 tspPP = parser "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/Parser/PruebaParser.mora"
+
+tspj1 = parser "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/Parser/java/AbstractApplicationContextTests.java"
+tspj2 = parser "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/Parser/java/AbstractAttributes.java"
+tspj3 = parser "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/Parser/java/AbstractBeanFactoryTests.java"
+tspj4 = parser "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/Parser/java/AbstractControlFlowTests.java"
+tspj5 = parser "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/Parser/java/AbstractListableBeanFactoryTests.java"
+
+tspj = parser "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/Parser/java/CharArrayPropertyEditorTests.java"

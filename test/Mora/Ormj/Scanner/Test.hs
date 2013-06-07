@@ -89,3 +89,5 @@ tssImport = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Or
 tssPI = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/Parser/PackageImportTest.mora"
 tssPC = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/Parser/PruebaConditionalExpression.mora"
 tssPP = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/Parser/PruebaParser.mora"
+
+tssj = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/Parser/java/CharArrayPropertyEditorTests.java"
