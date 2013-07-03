@@ -12,9 +12,34 @@ executable test
                  uulib,
                  filepath,
                  mora-ormj,
+                 iteratee >= 0.8.9.4,
+                 bytestring,
+                 transformers,
+                 unix,
+                 pipes-safe,
+                 pipes,
                  Cabal
   main-is:       Main.hs
   hs-source-dirs: test
+
+executable test1
+  build-depends:
+                 base >= 4,
+                 directory,
+                 uu-parsinglib,
+                 uulib,
+                 filepath,
+                 mora-ormj,
+                 iteratee >= 0.8.9.4,
+                 bytestring,
+                 transformers,
+                 unix,
+                 pipes-safe,
+                 pipes,
+                 Cabal
+  main-is:       Main.hs
+  hs-source-dirs: test
+
 
 library
   build-depends:   
@@ -23,6 +48,12 @@ library
                    uu-parsinglib,
                    uulib,
                    filepath,
+                   iteratee >= 0.8.9.4,
+                   bytestring,
+                   transformers,
+                   unix,
+                   pipes-safe,
+                   pipes,
                    Cabal
   exposed-modules: Mora.Ormj.Scanner Mora.Ormj.Parser Mora.Ormj.Integration
     Mora.Ormj.Scanner.Token Mora.Ormj.Scanner.Show Mora.Ormj.Scanner.Lexical Mora.Ormj.Scanner.Generic

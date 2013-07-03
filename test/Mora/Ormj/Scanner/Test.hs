@@ -3,6 +3,12 @@ module Mora.Ormj.Scanner.Test where
 import Mora.Ormj.Scanner
 import Content
 
+import Mora.Ormj.Scanner.Position
+import UU.Scanner.Position
+import Control.Exception(evaluate)
+import Control.Monad(forM, liftM)
+
+
 testSingleScanner = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/java/openjdk-6-src-b27/jdk/src/share/classes/com/sun/demo/jvmti/hprof/Tracker.java"
 
 testAllTypeScanner = do
@@ -10,10 +16,17 @@ testAllTypeScanner = do
                        let tokens = res
                        putStr (show tokens)
 
-testScanner = do
-                res <- recursiveContentsScanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test"
-                let tokens = res
-                putStr (show tokens)
+-- testScanner = do
+--                 res <- recursiveContentsScanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test"
+--                 let tokens = res
+--                putStr (show tokens)
+
+-- testScanner = do
+--                res <- recursiveContentsScanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test"
+--                 mapM f res
+--                    where f res = readFile res >>= (\r ->  evaluate (classify r (initPos r)))
+--
+
 
 tss0 = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/Parser/0compilationUnit.mora"
 tss1 = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/Parser/1compilationUnitSimple.mora"
@@ -91,3 +104,5 @@ tssPC = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/P
 tssPP = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/Parser/PruebaParser.mora"
 
 tssj = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/Parser/java/CharArrayPropertyEditorTests.java"
+
+

@@ -3,57 +3,6 @@ package ar.com.slemos.model;
 /* PRUEBAS DE NORMALCLASSDECLARATION */
 
 // ClassModifier
-/*
-class Alumno { }
-public static class Alumno { }
-protected static class Alumno { }
-private abstract class Alumno { }
-public static final class Alumno { }
-public static strictfp  class Alumno { }
-public @ClaseAnn(b = 34) class Alumno { }
-
-// class Identifier TypeParameters opt
- class ConvertibleTo<T> {
- }
-
-
-class ReprChange<T extends ConvertibleTo<S, ?>,
-S extends ConvertibleTo<T>, M, N> {
-T t;
-}
-
-class ReprChange<T extends ConvertibleTo,
- S extends ConvertibleTo<T[]>> {
- T t;
-}
-
-class ReprChange <T extends ConvertibleTo & adada<aa>, S extends ConvertibleTo<T[]> & adada<aa>>  {
- T t;
-}
-
-
-class ReprChange <T extends ConvertibleTo & adada<aa[]>, S extends ConvertibleTo<T[]> & adada<aa>>  {
- T t;
-}
-
-
-// Super opt
-class ReprChange <T extends ConvertibleTo & adada<aa[]>, S extends ConvertibleTo<T[]> & adada<aa>> 
-extends Casa.adasd<A,B[]>  {
- T t;
-}
-
-class ReprChange <T extends ConvertibleTo & adada<aa[]>, S extends ConvertibleTo<T[]> & adada<aa>> 
-extends Casa  {
- T t;
-}
-
-// Interfaces opt
-class ReprChange <T extends ConvertibleTo & adada<aa[]>, S extends ConvertibleTo<T[]> & adada<aa>> 
-extends Casa.adasd<A,B[]> implements IIIII  {
- T t;
-}
-*/
 
 
 

@@ -3,14 +3,51 @@ module Main where
 import Mora.Ormj.Scanner.Test
 import Mora.Ormj.Parser.Test
 
-main :: IO ()
-main = do f <- getLine
-          let command = test f
-          command
+import Mora.Ormj.Scanner.Position
+import Mora.Ormj.Scanner
+import UU.Scanner.Position
+
+import Mora.Ormj.Scanner.Token
+
+
+-- import Control.Monad
+-- import Control.Monad.IO.Class
+-- import Control.Applicative
+-- import System.Environment
+-- import System.Directory
+-- import System.FilePath
+-- import qualified Data.List as L
+-- import qualified Data.ByteString.Char8 as B
+-- import qualified Data.Iteratee as I
+-- import Data.Iteratee.Iteratee
+-- import qualified Data.Iteratee.Char as EC
+-- import qualified Data.Iteratee.IO.Fd as EIO
+-- import qualified Data.Iteratee.ListLike as EL
+
+-- import Data.Binary
+
+import Control.Monad (when, unless)
+import Control.Proxy
+import Control.Proxy.Safe hiding (readFileS)
+import qualified Data.ByteString as B
+import qualified Data.ByteString.Char8 as B8
+import System.Directory (readable, getPermissions, doesDirectoryExist)
+import System.FilePath ((</>), takeFileName)
+import System.Posix (openDirStream, readDirStream, closeDirStream)
+import System.IO (openFile, hClose, IOMode(ReadMode), hIsEOF)
+
+
+-- main :: IO ()
+-- main = do f <- getLine
+--          let command = test1 f
+--           command
+
+
+test1 "testscanner" = testScanner
 
 test "singlescanner" = testSingleScanner
 test "alltypescanner" = testAllTypeScanner
-test "testscanner" = testScanner
+
 
 test "singleparser" = testSingleParser
 test "alltypeparser" = testAllTypeParser
@@ -176,5 +213,210 @@ test "tssPP" =  tssPP
 
 test "tssj" = tssj
 
-
 test _ = print ("Command not found!!")
+
+
+-- iterate
+-- Iterate ------------------------------------------------------------------------------------------------------------
+-- getValidContents :: FilePath -> IO [String]
+-- getValidContents path =
+--     filter (`notElem` [".", "..",".git", ".svn",".metadata",".idea",".project",".gitignore",".settings",".hsproject",".dist-scion",".dist-buildwrapper"])
+--     <$> getDirectoryContents path
+
+
+-- isSearchableDir :: FilePath -> IO Bool
+-- isSearchableDir dir = doesDirectoryExist dir
+
+--     -- (&&) <$> doesDirectoryExist dir
+--     --     <*> (searchable <$> getPermissions dir)
+
+
+-- doesFileExistAndFilter :: FilePath -> IO Bool
+-- doesFileExistAndFilter dir =
+--     (&&) <$> doesFileExist dir
+--          <*> return (snd (splitExtension dir) == ".java" || snd (splitExtension dir) == ".mora")
+
+
+-- getRecursiveContents :: FilePath -> IO [FilePath]
+-- getRecursiveContents dir = do
+--     cnts <- map (dir </>) <$> getValidContents dir
+--     cnts' <- forM cnts $ \path -> do
+--         isDirectory <- isSearchableDir path
+--         if isDirectory
+--             then getRecursiveContents path
+--             else if (snd (splitExtension path) == ".java" || snd (splitExtension path) == ".mora")
+--                     then return [path]
+--                     else return []
+--     return . concat $ cnts'
+
+-- printI :: Iteratee [B.ByteString] IO ()
+-- printI = do
+--     mx <- EL.tryHead
+--     case mx of
+--          Nothing -> return ()
+--          Just l -> do
+--              liftIO . B.putStrLn $ l
+--              printI
+
+
+
+
+-- firstLineE :: Enumeratee [FilePath] [B.ByteString] IO ()
+-- firstLineE = mapChunksM $ \filenames -> do
+--     forM filenames $ \filename -> do
+--         i <- EIO.enumFile 1024 filename $ joinI $ ((mapChunks B.pack) ><> EC.enumLinesBS) EL.tryHead
+--         result <- case i of
+--                        Iteratee Nothing -> run I.identity
+--                        Iteratee Just l -> do
+--                            run l
+--         return result
+
+-- enumDir :: FilePath -> Enumerator [FilePath] IO b
+-- enumDir dir iter = runIter iter idoneM onCont
+--     where
+--         onCont k Nothing = do
+--             (files, dirs) <- liftIO getFilesDirs
+--             if null dirs
+--                 then return $ k (Chunk files)
+--                 else walk dirs $ k (Chunk files)
+--         walk dirs = foldr1 (>>>) $ map enumDir dirs
+--         getFilesDirs = do
+--             cnts <- map (dir </>) <$> getValidContents dir
+--             (,) <$> filterM doesFileExist  cnts
+--                 <*> filterM isSearchableDir cnts
+
+-- enumDir :: FilePath -> Enumerator String IO b
+-- enumDir dir = list
+--   where
+--     list (Continue k) = do
+--         (files,dirs) <- liftIO getFilesDirs
+--         if null dirs
+--            then k (Chunks files)
+--            else k (Chunks files) >>== walk dirs
+--     list step = returnI step
+--     walk dirs = foldr1 (<==<) $ map enumDir dirs
+--     getFilesDirs = do
+--         cnts <- map (dir </>) <$> getValidContents dir
+--         (,) <$> filterM doesFileExist cnts
+--             <*> filterM isSearchableDir cnts
+
+-- allFirstLines :: FilePath -> IO ()
+-- allFirstLines dir = do
+--     i' <- enumDir dir $ joinI $ firstLineE printI
+--     run i'
+
+-- allFirstLines :: FilePath -> IO ()
+-- allFirstLines dir = do
+--     filepaths <- getRecursiveContents dir
+--     l <- mapM firstLineE $ filepaths
+--     mapM_ B.putStrLn l
+
+
+-- main = do
+--     dir:_ <- getArgs
+--     allFirstLines dir
+
+testScanner = main -- allFirstLines "/home/andrea/workspaceclipse_haskell/Mora-Ormj"
+
+-- consumer :: Iteratee B.ByteString IO ()
+-- consumer = do
+--     mw <- EL.head
+--     case mw of
+--         Nothing -> return ()
+--         Just w  -> do
+--             liftIO . putStr $ "XXX "
+--             liftIO . B.putStrLn . BS.singleton $ w
+--             consumer
+
+
+-- OverloadedStrings allows ByteString literal.
+-- listFeeder :: Enumerator B.ByteString IO a
+-- listFeeder = enumList 1 [ "12", "34" ]
+
+
+-- --------------------------------------------------------------------------------------------------------------------
+-- Pipe
+
+contents
+     :: (CheckP p)
+     => FilePath -> () -> Producer (ExceptionP p) FilePath SafeIO ()
+contents path () = do
+     canRead <- tryIO $ fmap readable $ getPermissions path
+     when canRead $ bracket id (openDirStream path) closeDirStream $ \dirp -> do
+         let loop = do
+                 file <- tryIO $ readDirStream dirp
+                 case file of
+                     [] -> return ()
+                     _  -> do
+                         respond (path </> file)
+                         loop
+         loop
+
+contentsRecursive
+     :: (CheckP p)
+     => FilePath -> () -> Producer (ExceptionP p) FilePath SafeIO ()
+contentsRecursive path () = loop path
+   where
+     loop path = do
+         contents path () //> \newPath -> do
+             respond newPath
+             isDir <- tryIO $ doesDirectoryExist newPath
+             let isChild = not $ takeFileName newPath `elem` [".", ".."]
+             when (isDir && isChild) $ loop newPath
+
+readFileS
+    :: (CheckP p)
+    => Int -> FilePath -> () -> Producer (ExceptionP p) B.ByteString SafeIO ()
+readFileS chunkSize path () =
+    bracket id (openFile path ReadMode) hClose $ \handle -> do
+        let loop = do
+                eof <- tryIO $ hIsEOF handle
+                unless eof $ do
+                    bs <- tryIO $ B.hGetSome handle chunkSize
+                    respond bs
+                    loop
+        loop
+
+firstLine :: (Proxy p) => () -> Consumer p B.ByteString IO ()
+firstLine () = runIdentityP loop
+  where
+    loop = do
+        bs <- request ()
+        let (prefix, suffix) = B8.span  (/= '\n') bs
+        lift $ B8.putStr prefix
+        if (B.null suffix) then loop else lift $ B8.putStr (B8.pack "\n")
+
+
+allContent :: (Proxy p) => () -> Consumer p B.ByteString IO ()
+allContent () = runIdentityP loop
+  where
+    loop = do
+        bs <- request ()
+        lift $ B8.putStr bs
+
+
+applyScanner :: (Proxy p) => String ->  Consumer p B.ByteString IO ()
+applyScanner path = runIdentityP loop
+  where
+    loop = do
+        bs <- request ()
+        let sc = tokenToByteString (classify (B8.unpack bs) (initPos path))
+        lift $ putStrLn ("Opening file --------------------------------------------------------------- " ++ path)
+        lift $ B8.putStrLn sc
+        lift $ putStrLn ("Closing file  ---------------------------------------------------------------  " ++ path)
+
+
+-- ((B8.pack (show ormj)) B8.append (B8.pack " ") B8.append (B8.pack str) B8.append (B8.pack "\t") B8.append (B8.pack pos) B8.append (B8.pack "\n")))
+tokenToByteString :: [Token] -> B.ByteString
+tokenToByteString ls = foldl (\x (Token ormj str pos) ->
+                        B8.append x ( B8.pack ((show ormj) ++ "\t" ++ str ++ "\t" ++ (show pos) ++ "\n")  )) B8.empty ls
+
+handler :: (CheckP p) => FilePath -> Session (ExceptionP p) SafeIO ()
+handler path = do
+    canRead <- tryIO $ fmap readable $ getPermissions path
+    isDir   <- tryIO $ doesDirectoryExist path
+    when (not isDir && canRead) $
+        (readFileS 1024 path >-> try . applyScanner) path
+
+main = runSafeIO $ runProxy $ runEitherK $
+      contentsRecursive "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test" />/ handler

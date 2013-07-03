@@ -75,7 +75,7 @@ hex2=0xAF;
 
 // Hexadecimal Floating Pint Literals 
 
-0x666345AFp6f;
+0x666345AF.p6f;
 
 // Opcion 2 : Hexadecimal Floating Pint Literals 
 0X666345AF.p-6;
