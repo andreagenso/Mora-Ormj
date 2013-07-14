@@ -328,7 +328,8 @@ takeLong (c:cs) | (c == 'l') || (c == 'L') = [c]
 -- take all comment block
 takeBlockComment :: Code -> Comment
 takeBlockComment []    = ""
-takeBlockComment code  | (!!) (code \\ (searchEndComment code)) 1   == '/' = (searchEndComment code) ++ (take 2 (code \\ (searchEndComment code)))
+takeBlockComment code  | length (code \\ (searchEndComment code)) < 2  = (searchEndComment code) ++ ['*'] ++ (takeBlockComment ((code \\ (searchEndComment code))\\ ['*']))
+                       | (!!) (code \\ (searchEndComment code)) 1   == '/' = (searchEndComment code) ++ (take 2 (code \\ (searchEndComment code)))
                        | otherwise                                         = (searchEndComment code) ++ ['*'] ++ (takeBlockComment ((code \\ (searchEndComment code))\\ ['*'])) 
                        where  -- search the exit simbol comment
                                     searchEndComment :: Code -> Comment

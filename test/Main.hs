@@ -6,6 +6,8 @@ import Mora.Ormj.Parser.Test
 import Mora.Ormj.Scanner.Position
 import Mora.Ormj.Scanner
 import UU.Scanner.Position
+import System.FilePath ((</>), splitExtension)
+import Control.Exception.Base (evaluate)
 
 import Mora.Ormj.Scanner.Token
 
@@ -415,7 +417,8 @@ handler :: (CheckP p) => FilePath -> Session (ExceptionP p) SafeIO ()
 handler path = do
     canRead <- tryIO $ fmap readable $ getPermissions path
     isDir   <- tryIO $ doesDirectoryExist path
-    when (not isDir && canRead) $
+    isValidExtension <- tryIO $ evaluate (snd (splitExtension path) == ".java" || snd (splitExtension path) == ".mora")
+    when (not isDir && canRead && isValidExtension) $
         (readFileS 1024 path >-> try . applyScanner) path
 
 main = runSafeIO $ runProxy $ runEitherK $
