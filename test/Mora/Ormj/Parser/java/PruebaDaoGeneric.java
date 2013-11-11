@@ -72,7 +72,7 @@ public class PruebaDaoGeneric {
 		try {
 			daoTest.save(ejemplo);
 		} catch (UnableToSaveException e) {
-			System.err.println("Si, fallo como deb�a ser");
+			System.err.println("Si, fallo como debia ser");
 		}
 
 		System.out.println("Seteamos el usuario inicial...");
@@ -85,7 +85,7 @@ public class PruebaDaoGeneric {
 		try {
 			usuarioDao.save(usuarioAdmin);
 		} catch (UnableToSaveException e) {
-			System.err.println("Ya se hab�a creado el usuario admin!");
+			System.err.println("Ya se habia creado el usuario admin!");
 		}
 	}
 }

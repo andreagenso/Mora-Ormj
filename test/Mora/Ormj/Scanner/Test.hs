@@ -9,6 +9,12 @@ import Control.Exception(evaluate)
 import Control.Monad(forM, liftM)
 
 
+import Control.Proxy
+import Control.Proxy.Safe hiding (readFileS)
+import System.FilePath ((</>), takeFileName)
+import Content
+
+
 testSingleScanner = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/java/openjdk-6-src-b27/jdk/src/share/classes/com/sun/demo/jvmti/hprof/Tracker.java"
 
 testAllTypeScanner = do
@@ -27,6 +33,15 @@ testAllTypeScanner = do
 --                    where f res = readFile res >>= (\r ->  evaluate (classify r (initPos r)))
 --
 
+testScanner  = runSafeIO $ runProxy $ runEitherK $
+                    contentsRecursive "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test" />/ handler
+
+
+tssswitchboard = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/Parser/java/SwitchBoardController.java"
+
+testScannerWithError1 = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/java/openjdk-6-src-b27/jdk/test/sun/security/rsa/TestKeyFactory.java"
+testScannerWithError2  = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/java/openjdk-6-src-b27/jdk/test/com/sun/crypto/provider/Cipher/DES/PerformanceTest.java"
+testScannerWithError  = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/java/openjdk-6-src-b27/jdk/test/java/lang/StrictMath/Log1pTests.java"
 
 tss0 = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/Parser/0compilationUnit.mora"
 tss1 = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/Parser/1compilationUnitSimple.mora"

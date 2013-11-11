@@ -72,7 +72,7 @@ isId (x:xs) = (isAlpha x) || (x == '_') || (x == '$')
 isDigitPoint []     = False
 isDigitPoint (x:xs) =  (isDigit  x) || (x == '.')
 
-fIniWithId (scod,code) pos  | isKeyWord        scod keyWord        = (Token KeyWord (takeWhile isAlpha scod) pos)                               : (classify1 ((scod \\(takeWhile isAlpha scod)) ++ code )  (advc (length (takeWhile isAlpha scod )) pos)                )
+fIniWithId (scod,code) pos  | isKeyWord        scod keyWord        = (Token KeyWord (takeWhile isAlphaNum scod) pos)                               : (classify1 ((scod \\(takeWhile isAlpha scod)) ++ code )  (advc (length (takeWhile isAlphaNum scod )) pos)                )
                                                         | isBooleanLiteral scod constantBool   = (Token BooleanLiteral (takeBooleanLit scod constantBool) pos)              : (classify1 ((scod \\ (takeBooleanLit scod constantBool )) ++ code) (advc (length (takeBooleanLit scod constantBool)) pos ))                                                                                                                                        
                                                         | isNullLiteral    scod ["null"]       = (Token NullLiteral    (takeToken scod ["null"]     ) pos)                  : (classify1 ((scod \\ (takeToken scod ["null"]      )) ++ code) (advc (length (takeToken scod ["null"]     )) pos ))                                                        
                                                         | isIdentifier     scod                = (Token Identifier (takeWhile isIdentifier' scod) pos)                      : (classify1 ((scod \\ (takeWhile isIdentifier' scod)) ++ code) (advc (length (takeWhile isIdentifier' scod )) pos ))
@@ -214,7 +214,7 @@ idflPoint (c1:c2:cs) = (c1 == '.') && (  (isDigit c2) || c2 == 'E' || c2 == 'e' 
 
 -- tomar la parte de codigo que corresponde a un floating literal 1 : : Digits . Digits(opt) ExponentParts(opt) FloatTypeSuffix(opt)
 -- no se optimiza
-takeFloat1Integer1 cod = (takeWhile (isDigit) cod) ++ 
+takeFloat1Integer1 cod = (takeWhile (isDigit) cod) ++
                        (take 1 (dropWhile (isDigit) cod)) ++ 
                        (digitsOpt (drop 1 (dropWhile (isDigit) cod)))
 
@@ -352,7 +352,7 @@ takeLineComment = takeWhile ( /='\n')
 -- optimizado
 isKeyWord :: SimCode-> [KeyWord] -> Bool
 --isKeyWord  scod lkw = isKeyWord'  scod "" lkw
-isKeyWord  scod lkw =  (elem) (takeWhile isAlpha scod) lkw
+isKeyWord  scod lkw =  (elem) (takeWhile isAlphaNum scod) lkw
 
 -- isKeyWord' :: SimCode-> SimCode -> [KeyWord] -> Bool
 -- isKeyWord'  []      scod  lkw   = (elem) scod lkw
