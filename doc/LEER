@@ -25,4 +25,34 @@ executable Mora-Ormj
 
   -----------------------------------------------------------------
 
+
+    cabal build -v
+
   testScanner: "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/java/openjdk-6-src-b27/jdk/src/share/classes/com/sun/demo/jvmti/hprof/Tracker.java"
+
+
+
+  Listar paquetes de los que se va a quitar el registro
+  ghc-pkg list | grep pipes
+
+    pipes-4.0.1
+    pipes-safe-2.0.1
+
+  quitar del registo de ghc
+
+  ghc-pkg unregister --force  pipes-4.0.1
+
+  volver a instalar: en la raiz del proyecto:
+
+
+  cabal install 'pipes < 3.4'
+  cabal install pipes-safe-1.2.0
+
+  cabal clean
+  cabal configure
+  cabal build
+  cabal install
+
+/home/andrea/workspaceclipse_haskell/Mora-Ormj/dist/build/test
+./test
+scannerwitherror

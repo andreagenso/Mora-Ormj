@@ -81,15 +81,15 @@ fIniWithId (scod,code) pos  | isKeyWord        scod keyWord        = (Token KeyW
                                                         -- isIdentifier     scod                = (Token Identifier (takeWhile isIdentifier' scod) pos)                      : (classify1 ((scod \\ (takeWhile isIdentifier' scod)) ++ code) (advc (length (takeWhile isIdentifier' scod )) pos ))
 
 fIniWithZero (scod,code) pos  | isOctalIntegerLiteral scod           = (Token (OctalIntegerLiteral)(takeOctInteger scod) pos)                     : (classify1 ((scod \\ (takeOctInteger scod)) ++ code) (advc (length (takeOctInteger scod)) pos ))
-                                                      | isHexaFloatingPointLiteral3 scod     = (Token (HexadecimalFloatingPointLiteral)(takeHexaFloatLiteral3 scod) pos)  : (classify1 ((scod \\ (takeHexaFloatLiteral3 scod)) ++ code) (advc (length (takeHexaFloatLiteral3 scod)) pos))
+                                                          | isHexaFloatingPointLiteral3 scod     = (Token (HexadecimalFloatingPointLiteral)(takeHexaFloatLiteral3 scod) pos)  : (classify1 ((scod \\ (takeHexaFloatLiteral3 scod)) ++ code) (advc (length (takeHexaFloatLiteral3 scod)) pos))
                                                           | isHexaFloatingPointLiteral1 scod     = (Token (HexadecimalFloatingPointLiteral)(takeHexaFloatLiteral1 scod) pos)  : (classify1 ((scod \\ (takeHexaFloatLiteral1 scod)) ++ code) (advc (length (takeHexaFloatLiteral1 scod)) pos))
                                                           | isHexaFloatingPointLiteral2 scod     = (Token (HexadecimalFloatingPointLiteral)(takeHexaFloatLiteral2 scod) pos)  : (classify1 ((scod \\ (takeHexaFloatLiteral2 scod)) ++ code) (advc (length (takeHexaFloatLiteral2 scod)) pos))
-                                                          | isHexIntegerLiteral scod             = (Token (HexIntegerLiteral)(takeHexInteger scod) pos)                       : (classify1 ((scod \\ (takeHexInteger scod)) ++ code) (advc (length (takeHexInteger scod)) pos )) 
-                                                          | isDecimalFloatingLiteral1 scod       = (Token (DecimalFloatingPointLiteral)(takeFloat1Integer1 scod) pos)         : (classify1 ((scod \\ (takeFloat1Integer1 scod)) ++ code) (advc (length (takeFloat1Integer1 scod)) pos )) 
-                                                          | isDecimalFloatingLiteral2 scod       = (Token (DecimalFloatingPointLiteral)(takeFloat1Integer2 scod) pos)         : (classify1 ((scod \\ (takeFloat1Integer2 scod)) ++ code) (advc (length (takeFloat1Integer2 scod)) pos )) 
-                                                          | isDecimalFloatingLiteral3 scod       = (Token (DecimalFloatingPointLiteral)(takeFloat1Integer3 scod) pos)         : (classify1 ((scod \\ (takeFloat1Integer3 scod)) ++ code) (advc (length (takeFloat1Integer3 scod)) pos )) 
-                                                          | isDecimalFloatingLiteral4 scod       = (Token (DecimalFloatingPointLiteral)(takeFloat1Integer4 scod) pos)         : (classify1 ((scod \\ (takeFloat1Integer4 scod)) ++ code) (advc (length (takeFloat1Integer4 scod)) pos )) 
-                                                          | isIntegerLiteral scod                = (Token (DecimalIntegerLiteral)(takeDecimalInteger scod) pos)               : (classify1  ((scod \\ (takeDecimalInteger scod)) ++ code) (advc (length (takeDecimalInteger scod)) pos ))                                                                                                        
+                                                          | isHexIntegerLiteral scod             = (Token (HexIntegerLiteral)(takeHexInteger scod) pos)                       : (classify1 ((scod \\ (takeHexInteger scod)) ++ code) (advc (length (takeHexInteger scod)) pos ))
+                                                          | isDecimalFloatingLiteral1 scod       = (Token (DecimalFloatingPointLiteral)(takeFloat1Integer1 scod) pos)         : (classify1 ((scod \\ (takeFloat1Integer1 scod)) ++ code) (advc (length (takeFloat1Integer1 scod)) pos ))
+                                                          | isDecimalFloatingLiteral2 scod       = (Token (DecimalFloatingPointLiteral)(takeFloat1Integer2 scod) pos)         : (classify1 ((scod \\ (takeFloat1Integer2 scod)) ++ code) (advc (length (takeFloat1Integer2 scod)) pos ))
+                                                          | isDecimalFloatingLiteral3 scod       = (Token (DecimalFloatingPointLiteral)(takeFloat1Integer3 scod) pos)         : (classify1 ((scod \\ (takeFloat1Integer3 scod)) ++ code) (advc (length (takeFloat1Integer3 scod)) pos ))
+                                                          | isDecimalFloatingLiteral4 scod       = (Token (DecimalFloatingPointLiteral)(takeFloat1Integer4 scod) pos)         : (classify1 ((scod \\ (takeFloat1Integer4 scod)) ++ code) (advc (length (takeFloat1Integer4 scod)) pos ))
+                                                          | isIntegerLiteral scod                = (Token (DecimalIntegerLiteral)(takeDecimalInteger scod) pos)               : (classify1  ((scod \\ (takeDecimalInteger scod)) ++ code) (advc (length (takeDecimalInteger scod)) pos ))
                                                           | isSpecialSimbol  scod specialSimbol  = (Token SpecialSimbol  (takeToken scod specialSimbol) pos)                                 : (classify1 ((scod \\ (takeToken scod specialSimbol )) ++ code) (advc (length (takeToken scod specialSimbol)) pos ))
                                                           | otherwise                            = (Token Error scod pos)                                                                    : (classify1 code (advc (length scod) pos))                                         
 
@@ -117,8 +117,13 @@ tieneEspacio' (nil) ls = cata ls where
 isHexaFloatingPointLiteral1 ""             = False
 isHexaFloatingPointLiteral1 (c:[])         = False
 isHexaFloatingPointLiteral1 (c1:c2:[])     = False
-isHexaFloatingPointLiteral1 (c1:c2:c3:cs) | (c1 == '0') && (c2 =='x' || c2 == 'X' ) && (isHexDigit c3) = (isBinaryExponent (dropWhile (isHexDigit) cs))  
+isHexaFloatingPointLiteral1 (c1:c2:c3:cs) |  (c1=='0') && (c2 =='x' || c2 == 'X' ) && (isHexDigit c3) = (isBinaryExponent (dropWhile (isHexDigit) cs))
                                           | otherwise                                                  = False
+isHexaFloatingPointLiteral1 (c0:c1:c2:c3:cs) |  (c0=='-') && (c1=='0') && (c2 =='x' || c2 == 'X' ) && (isHexDigit c3) = (isBinaryExponent (dropWhile (isHexDigit) cs))
+                                             | otherwise                                                  = False
+
+--isHexaFloatingPointLiteral1 (c1:c2:c3:cs) | (c1 == '0') && (c2 =='x' || c2 == 'X' ) && (isHexDigit c3) = (isBinaryExponent (dropWhile (isHexDigit) cs))
+--                                          | otherwise                                                  = False
 
 -- optimizado
 -- isBinaryExponent ""            = False
@@ -158,8 +163,15 @@ signedInteger (c1:c2:cs) | (isDigit c1)                                = (c1:(ta
 isHexaFloatingPointLiteral2 ""             = False
 isHexaFloatingPointLiteral2 (c:[])         = False
 isHexaFloatingPointLiteral2 (c1:c2:[])     = False
-isHexaFloatingPointLiteral2 (c1:c2:c3:cs) | (c1 == '0') && (c2 =='x' || c2 == 'X' ) && (isHexDigit c3) = (isBinaryExponent   (isPoint (dropWhile (isHexDigit) cs)))  
-                                          | otherwise                                                  = False
+isHexaFloatingPointLiteral2 (c1:c2:c3:cs) | (c1 == '0') && (c2 =='x' || c2 == 'X' ) && (isHexDigit c3) = (isBinaryExponent   (isPoint (dropWhile (isHexDigit) cs)))
+                                           | otherwise                                                  = False
+isHexaFloatingPointLiteral2 (c0:c1:c2:c3:cs) | (c0 == '-') && (c1 == '0') && (c2 =='x' || c2 == 'X' ) && (isHexDigit c3) = (isBinaryExponent   (isPoint (dropWhile (isHexDigit) cs)))
+                                             | otherwise                                                  = False
+-- isHexaFloatingPointLiteral2 (c1:c2:c3:cs) | (c1 == '0') && (c2 =='x' || c2 == 'X' ) && (isHexDigit c3) = (isBinaryExponent   (isPoint (dropWhile (isHexDigit) cs)))
+--                                          | otherwise                                                  = False
+
+
+
 -- no se optimiza
 isPoint "" = ""
 isPoint (c1:cs) | c1 == '.' = cs
@@ -175,12 +187,21 @@ takeHexaFloatLiteral2 (c1:c2:c3:cs) = c1:c2:c3:( (takeWhile isHexDigit cs) ++ ( 
 -- no se optimiza
 -- verificar :  HexSignificand BinaryExponent FloatTypeSuffixopt
 -- Opcion 3 :   HexSignificand    es 0x HexDigitsopt . HexDigits  
--- Opcion 3 :   HexSignificand    es 0X HexDigitsopt . HexDigits  
+-- Opcion 3 :   HexSignificand    es 0X HexDigitsopt . HexDigits
 isHexaFloatingPointLiteral3 ""             = False
 isHexaFloatingPointLiteral3 (c:[])         = False
 isHexaFloatingPointLiteral3 (c1:c2:[])     = False
-isHexaFloatingPointLiteral3 (c1:c2:c3:cs) | (c1 == '0') && (c2 =='x' || c2 == 'X' ) && ((isHexDigit c3) || (c3 == '.')) = (isBinaryExponent  ( (dropWhile (isHexDigit) (c3:cs))))  
+isHexaFloatingPointLiteral3 (c1:c2:c3:cs) | (c1=='0') && (c2 =='x' || c2 == 'X' ) && (c3 == '.') = (isBinaryExponent  ( (dropWhile (isHexDigit) (cs))))
+                                          | (c1=='0') &&  (c2 =='x' || c2 == 'X' ) && (isHexDigit c3) = (isBinaryExponent  ( (dropWhile (isHexDigit) (isPoint (dropWhile (isHexDigit) cs)) )))
                                           | otherwise                                                                   = False
+isHexaFloatingPointLiteral3 (c0:c1:c2:c3:cs) | (c0 == '-') && (c1 == '0') && (c2 =='x' || c2 == 'X' ) && (c3 == '.') = (isBinaryExponent  ( (dropWhile (isHexDigit) cs)))
+                                             | (c0 == '-') && (c1 == '0') && (c2 =='x' || c2 == 'X' ) && (isHexDigit c3) = (isBinaryExponent  ( (dropWhile (isHexDigit) (isPoint (dropWhile (isHexDigit) cs)))))
+                                             | otherwise                                                                 = False
+
+-- isHexaFloatingPointLiteral3 ('0':c2:'.':cs) = (c2 =='x' || c2 == 'X' ) = (isBinaryExponent  ( (dropWhile (isHexDigit) (cs))))
+-- isHexaFloatingPointLiteral3 ('0':c2:c3:cs) |  (c2 =='x' || c2 == 'X' ) && ((isHexDigit c3)) = (isBinaryExponent  ( (dropWhile (isHexDigit) (cs))))
+--                                            | otherwise                                                                   = False
+
 
 -- no se optimiza
 isMoreHex "" = ""

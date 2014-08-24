@@ -37,6 +37,8 @@ testScanner  = runSafeIO $ runProxy $ runEitherK $
                     contentsRecursive "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test" />/ handler
 
 
+testFloat = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/java/openjdk-6-src-b27/jdk/test/java/lang/StrictMath/Expm1Tests.java"
+testFloat2 = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/tmp/testfloat.java"
 tssswitchboard = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/Parser/java/SwitchBoardController.java"
 
 testScannerWithError1 = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/java/openjdk-6-src-b27/jdk/test/sun/security/rsa/TestKeyFactory.java"

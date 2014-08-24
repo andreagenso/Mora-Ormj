@@ -11,9 +11,10 @@ import Control.Exception.Base (evaluate)
 
 import Mora.Ormj.Scanner.Token
 
--- import Control.Monad (when, unless)
-import Control.Proxy
-import Control.Proxy.Safe hiding (readFileS)
+import Control.Monad (when, unless)
+
+--import Control.Proxy
+-- import Control.Proxy.Safe hiding (readFileS)
 -- import qualified Data.ByteString as B
 -- import qualified Data.ByteString.Char8 as B8
 -- import System.Directory (readable, getPermissions, doesDirectoryExist)
@@ -28,6 +29,9 @@ main = do f <- getLine
           command
 
 test "testscanner"  = testScanner
+
+test "testfloat" = testFloat
+test "testfloat2" = testFloat2
 test "tssswitchboard" = tssswitchboard
 
 test "scannerwitherror" = testScannerWithError

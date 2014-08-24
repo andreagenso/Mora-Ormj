@@ -16,8 +16,8 @@ executable test
                  bytestring,
                  transformers,
                  unix,
-                 pipes-safe,
-                 pipes,
+                 pipes >=3.2.0 && <3.4,
+                 pipes-safe == 1.2.0,
                  Cabal
   main-is:       Main.hs
   hs-source-dirs: test
@@ -34,8 +34,8 @@ executable test1
                  bytestring,
                  transformers,
                  unix,
-                 pipes-safe,
-                 pipes,
+                 pipes >=3.2.0 && <3.4,
+                 pipes-safe == 1.2.0,
                  Cabal
   main-is:       Main.hs
   hs-source-dirs: test
@@ -52,8 +52,8 @@ library
                    bytestring,
                    transformers,
                    unix,
-                   pipes-safe,
-                   pipes,
+                   pipes-safe == 1.2.0,
+                   pipes >=3.2.0 && <3.4,
                    Cabal
   exposed-modules: Mora.Ormj.Scanner Mora.Ormj.Parser Mora.Ormj.Integration
     Mora.Ormj.Scanner.Token Mora.Ormj.Scanner.Show Mora.Ormj.Scanner.Lexical Mora.Ormj.Scanner.Generic

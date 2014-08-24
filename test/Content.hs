@@ -13,6 +13,7 @@ import UU.Parsing
 import Control.Monad (when, unless)
 import Control.Proxy
 import Control.Proxy.Safe hiding (readFileS)
+
 import qualified Data.ByteString as B
 import qualified Data.ByteString.Char8 as B8
 import System.Directory (readable, getPermissions, doesDirectoryExist)
