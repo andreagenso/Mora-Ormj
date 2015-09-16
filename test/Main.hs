@@ -30,6 +30,11 @@ main = do f <- getLine
 
 test "testscanner"  = testScanner
 
+test "testjavatest"  = testJavaTest
+test "testjavatest2"  = testJavaTest2
+test "testencodingdir" = testEncodingDir
+
+test "testencode" = testEncode
 test "testfloat" = testFloat
 test "testfloat2" = testFloat2
 test "tssswitchboard" = tssswitchboard

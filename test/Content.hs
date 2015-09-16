@@ -2,7 +2,7 @@ module Content where
 
 import Control.Monad(forM, liftM)
 import System.Directory (doesDirectoryExist, getDirectoryContents)
-import System.FilePath ((</>), splitExtension)
+import System.FilePath ((</>), splitExtension, splitFileName)
 import Control.Exception(evaluate)
 import Mora.Ormj.Scanner
 import Mora.Ormj.Parser
@@ -106,7 +106,7 @@ handler :: (CheckP p) => FilePath -> Session (ExceptionP p) SafeIO ()
 handler path = do
     canRead <- tryIO $ fmap readable $ getPermissions path
     isDir   <- tryIO $ doesDirectoryExist path
-    isValidExtension <- tryIO $ evaluate (snd (splitExtension path) == ".java" || snd (splitExtension path) == ".mora")
+    isValidExtension <- tryIO $ evaluate ((snd (splitExtension path) == ".java" || snd (splitExtension path) == ".mora") && (snd (splitFileName path) /= "EncodeTest.java") && (snd (splitFileName path) /= "T6302184.java") && (snd (splitFileName path) /= "Unmappable.java"))
     when (not isDir && canRead && isValidExtension) $
         (readFileS 10240 path >-> try . applyScanner) path
 
@@ -124,7 +124,7 @@ getRecursiveContents topdir = do
           isDirectory <- doesDirectoryExist path
           if isDirectory
                 then getRecursiveContents path
-                else if (snd (splitExtension path) == ".java" || snd (splitExtension path) == ".mora")
+                else if ((snd (splitExtension path) == ".java" || snd (splitExtension path) == ".mora") && (snd (splitFileName path) /= "EncodeTest.java") && (snd (splitFileName path) /= "T6302184.java")  && (snd (splitFileName path) /= "Unmappable.java"))
                         then return [path]
                         else return []
         return (concat paths)
@@ -140,7 +140,7 @@ recursiveContentsParser topdir = do
           isDirectory <- doesDirectoryExist path
           if isDirectory
                 then recursiveContentsParser  path
-                else if (snd (splitExtension path) == ".java" || snd (splitExtension path) == ".mora")
+                else if ((snd (splitExtension path) == ".java" || snd (splitExtension path) == ".mora") && (snd (splitFileName path) /= "EncodeTest.java") && (snd (splitFileName path) /= "T6302184.java") && (snd (splitFileName path) /= "Unmappable.java"))
                         then
                             do
                                 reading <- readFile path
@@ -159,7 +159,7 @@ recursiveContentsScanner topdir = do
           isDirectory <- doesDirectoryExist path
           if isDirectory
                 then recursiveContentsScanner path
-                else if (snd (splitExtension path) == ".java" || snd (splitExtension path) == ".mora")
+                else if ((snd (splitExtension path) == ".java" || snd (splitExtension path) == ".mora") && (snd (splitFileName path) /= "EncodeTest.java") && (snd (splitFileName path) /= "T6302184.java") && (snd (splitFileName path) /= "Unmappable.java"))
                         then return [path]
                         else return []
         return (concat paths)

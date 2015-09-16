@@ -22,6 +22,6 @@
  */
 
 /**
- * @author Peter von der Ahé
+ * @author Peter von der Ah
  */
 class Utf8 {}

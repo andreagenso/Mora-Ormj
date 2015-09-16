@@ -136,10 +136,10 @@ isBinaryExponent' (nil) ls = cata ls where
         cata (l1:l2:ls) = (l1 == 'p' || l1== 'P') && (l2 == '+' || l2 == '-' || (isDigit l2))
 
 -- no se optimiza
-takeHexaFloatLiteral1 ""               = error ("Invalid  Hexadecimal Floating Literal Number")
-takeHexaFloatLiteral1 (c1:[])          = error ("Invalid  Hexadecimal Floating Literal Number")
-takeHexaFloatLiteral1 (c1:c2:[])       = error ("Invalid  Hexadecimal Floating Literal Number")
-takeHexaFloatLiteral1 (c1:c2:c3:[])    = error ("Invalid  Hexadecimal Floating Literal Number")
+takeHexaFloatLiteral1 ""               = error ("Invalid  Hexadecimal Floating Literal Number - 1.1")
+takeHexaFloatLiteral1 (c1:[])          = error ("Invalid  Hexadecimal Floating Literal Number - 1.2")
+takeHexaFloatLiteral1 (c1:c2:[])       = error ("Invalid  Hexadecimal Floating Literal Number - 1.3")
+takeHexaFloatLiteral1 (c1:c2:c3:[])    = error ("Invalid  Hexadecimal Floating Literal Number - 1.3")
 takeHexaFloatLiteral1 (c1:c2:c3:cs) = c1:c2:c3:( (takeWhile isHexDigit cs) ++ (takeBinary (dropWhile isHexDigit cs)) )
 
 
@@ -150,11 +150,12 @@ takeBinary (c1:cs)    | (c1 == 'p') || (c1 == 'P') = c1: (signedInteger cs)
                       | otherwise = error ("Invalid  Hexadecimal Floating Literal Number - takeBinary3")
 
 -- no se optimiza
-signedInteger ""                                                       = error ("Invalid  Hexadecimal Floating Literal Number")
-signedInteger (c1:[])                                                  = error ("Invalid  Hexadecimal Floating Literal Number")
+signedInteger ""                                                       = error ("Invalid  Hexadecimal Floating Literal Number - S.I. 1")
+signedInteger (c1:[])    | isDigit c1                                  = c1:[]
+                         | otherwise                                   = error ("Invalid  Hexadecimal Floating Literal Number - S.I. 2")
 signedInteger (c1:c2:cs) | (isDigit c1)                                = (c1:(takeWhile isDigit (c2:cs))) ++ (floatSuffix (dropWhile isDigit (c2:cs)))
                          | ((c1 == '+') || (c1 == '-'))&& (isDigit c2) = (c1:c2:  (takeWhile isDigit cs)) ++ (floatSuffix (dropWhile isDigit (cs)))
-                         | otherwise                                   = error ("Invalid  Hexadecimal Floating Literal Number")
+                         | otherwise                                   = error ("Invalid  Hexadecimal Floating Literal Number  - S.I. 3")
 
 
 -- no se optimiza
@@ -178,10 +179,10 @@ isPoint (c1:cs) | c1 == '.' = cs
                 | otherwise = ""
 
 -- no se optimiza
-takeHexaFloatLiteral2 ""               = error ("Invalid  Hexadecimal Floating Literal Number")
-takeHexaFloatLiteral2 (c1:[])          = error ("Invalid  Hexadecimal Floating Literal Number")
-takeHexaFloatLiteral2 (c1:c2:[])       = error ("Invalid  Hexadecimal Floating Literal Number")
-takeHexaFloatLiteral2 (c1:c2:c3:[])    = error ("Invalid  Hexadecimal Floating Literal Number")
+takeHexaFloatLiteral2 ""               = error ("Invalid  Hexadecimal Floating Literal Number  - 2.1")
+takeHexaFloatLiteral2 (c1:[])          = error ("Invalid  Hexadecimal Floating Literal Number  - 2.2")
+takeHexaFloatLiteral2 (c1:c2:[])       = error ("Invalid  Hexadecimal Floating Literal Number  - 2.3")
+takeHexaFloatLiteral2 (c1:c2:c3:[])    = error ("Invalid  Hexadecimal Floating Literal Number  - 2.4")
 takeHexaFloatLiteral2 (c1:c2:c3:cs) = c1:c2:c3:( (takeWhile isHexDigit cs) ++ ( take 1 (dropWhile isHexDigit cs)) ++ (takeBinary ( drop 1 (dropWhile isHexDigit cs))) )
 
 -- no se optimiza
@@ -211,9 +212,9 @@ isMoreHex (c1:c2:cs) | (c1 == '.') && (isHexDigit c2) = (dropWhile isHexDigit cs
                      
 
 -- no se optimiza
-takeHexaFloatLiteral3 ""               = error ("Invalid  Hexadecimal Floating Literal Number")
-takeHexaFloatLiteral3 (c1:[])          = error ("Invalid  Hexadecimal Floating Literal Number")
-takeHexaFloatLiteral3 (c1:c2:[])       = error ("Invalid  Hexadecimal Floating Literal Number")
+takeHexaFloatLiteral3 ""               = error ("Invalid  Hexadecimal Floating Literal Number - 3.1")
+takeHexaFloatLiteral3 (c1:[])          = error ("Invalid  Hexadecimal Floating Literal Number - 3.2")
+takeHexaFloatLiteral3 (c1:c2:[])       = error ("Invalid  Hexadecimal Floating Literal Number - 3.3")
 takeHexaFloatLiteral3 (c1:c2:cs) = c1:c2:( (takeWhile isHexDigit cs) ++ 
                                          (take 1 (dropWhile isHexDigit cs))  ++ 
                                          (takeWhile isHexDigit (drop 1 (dropWhile isHexDigit cs))) ++ 

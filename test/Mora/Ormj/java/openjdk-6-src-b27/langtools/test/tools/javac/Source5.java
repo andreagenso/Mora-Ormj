@@ -25,7 +25,7 @@
  * @test
  * @bug 5044157
  * @summary please accept -source 5 and -target 5
- * @author Peter von der Ahé
+ * @author Peter von der Ah
  *
  * @compile -source 5 -target 5 -encoding iso-8859-1 Source5.java
  * @run main Source5

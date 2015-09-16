@@ -15,6 +15,7 @@ import System.FilePath ((</>), takeFileName)
 import Content
 
 
+
 testSingleScanner = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/java/openjdk-6-src-b27/jdk/src/share/classes/com/sun/demo/jvmti/hprof/Tracker.java"
 
 testAllTypeScanner = do
@@ -36,8 +37,23 @@ testAllTypeScanner = do
 testScanner  = runSafeIO $ runProxy $ runEitherK $
                     contentsRecursive "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test" />/ handler
 
+testJavaTest  = runSafeIO $ runProxy $ runEitherK $
+                    contentsRecursive "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/java/openjdk-6-src-b27/jdk/test/java/lang/StrictMath/" />/ handler
 
-testFloat = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/java/openjdk-6-src-b27/jdk/test/java/lang/StrictMath/Expm1Tests.java"
+testJavaTest2  = runSafeIO $ runProxy $ runEitherK $
+                    contentsRecursive "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/java/openjdk-6-src-b27/langtools/test/" />/ handler
+
+testEncodingDir = runSafeIO $ runProxy $ runEitherK $
+                                      contentsRecursive "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/java/openjdk-6-src-b27/langtools/test/com/sun/javadoc/testEncoding/" />/ handler
+
+
+
+
+
+-- OK resolved testFloat = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/java/openjdk-6-src-b27/jdk/test/java/lang/StrictMath/Expm1Tests.java"
+-- testear codificacion
+testEncode = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/java/openjdk-6-src-b27/langtools/test/com/sun/javadoc/testEncoding/EncodeTest.java"
+testFloat = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/java/openjdk-6-src-b27/jdk/test/java/lang/StrictMath/Log1pTests.java"
 testFloat2 = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/tmp/testfloat.java"
 tssswitchboard = scanner "/home/andrea/workspaceclipse_haskell/Mora-Ormj/test/Mora/Ormj/Parser/java/SwitchBoardController.java"
 

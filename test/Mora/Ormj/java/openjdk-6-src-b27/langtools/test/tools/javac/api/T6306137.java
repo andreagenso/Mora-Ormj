@@ -25,7 +25,7 @@
  * @test
  * @bug     6306137
  * @summary JSR 199: encoding option doesn't affect standard file manager
- * @author  Peter von der Ahé
+ * @author  Peter von der Ah
  * @ignore
  *    Need to make the contentCache in JavacFileManager be aware of changes to the encoding.
  *    Need to propogate -source (and -encoding?) down to the JavacFileManager
